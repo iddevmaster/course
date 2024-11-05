@@ -31,19 +31,6 @@
         </section>
         <br>
         
-        <!-- <section class="d-flex flex-column align-items-center">
-            <div class="d-flex gap-2 w-75">
-                <p class="text-nowrap mb-0 align-self-center">Class Type:</p>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected disabled >Open this select menu</option>
-                    <option   v-for="(item, index) in store.dlttype">{{item.dlt_code}} : {{item.dlt_name_lo}}</option>
-             
-                </select>
-            </div>
-            <div class="d-flex justify-content-center my-3 w-25">
-                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Next <i class="icofont-double-right"></i></button>
-            </div>
-        </section> -->
     </div>
     <div class="container">
         <p>Note: For information about standard procedure to get driving license, please click here: <span><a href="" class="text-primary">Driving license prodedure</a></span></p>
@@ -75,6 +62,8 @@ const auth = useAuthStore();
 const router = useRouter();
 const store = AppointmentsStore()
 store.user_id = auth.user_id;
+
+
 
 await store.getdrivinglicense_type();
 

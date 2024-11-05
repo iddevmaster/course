@@ -18,6 +18,7 @@ export const AppointmentsStore = defineStore({
     popupconfirm: false,
     popupcancelapp: false,
     disabledselect:true,
+    leaning:false,
     apdel_id:null,
     ardel_id:null,
     ap_id:null,
@@ -140,7 +141,19 @@ export const AppointmentsStore = defineStore({
         dlt_description_english:
           "Cargo truck C2 having trailer total weight exceed 750 kilograms",   
       },
-    ]
+    ],
+    formselectapp: {
+      user_id: null,
+      dlt_code: "",
+    },
+    ModalRecheckApp:false,
+    formsearchcoursestory: {
+      page: 1,
+      per_page: 50,
+      search: '',
+      active_include: [1],
+    },
+    history:[],
 
   }),
   getters: {
@@ -157,6 +170,17 @@ export const AppointmentsStore = defineStore({
 
   },
   actions: {
+
+    async fetchDltType() {
+      try {
+        const data = await ApiService.get('/master_data/drivinglicense_type').then(response => {
+        this.dlt = response.data;
+        });
+        return true
+      } catch (error) {
+        return false;
+      }
+    },
 
     async saverevs() {
       const savereve = {user_id:this.user_id,ap_id:this.ap_id}
@@ -309,6 +333,53 @@ var myDateNow = Date.parse(date);
       }
   
     },
+
+    async History() {
+      this.formselectapp.user_id = this.user_id
+   
+      try {
+        const data = await ApiService.post('/course/learn/history/'+this.user_id, this.formsearchcoursestory).then(response => {
+
+
+this.history = response.data.data
+         });
+         return true;
+        } catch (error) {
+       return false;
+        }
+
+    },
+
+    async checkleaning() {
+      this.formselectapp.user_id = this.user_id
+     
+   
+      const indexToUpdate = this.history.find(x => x.dlt_code == this.formselectapp.dlt_code)
+     this.hit = [];
+this.leaning = false;  ///ไม่ผ่าน
+      for (let i = 0; i < this.history.length; i++) {
+        if(this.formselectapp.dlt_code == this.history[i].course_code ){
+          this.hit.push(this.history[i]);
+        }
+      }
+      ////////////////////////  เช็ค คะแนน
+
+
+      ////////////////////////
+
+    if(this.hit.length > 0){
+      if(this.hit[0].progress > 1){
+        this.leaning = true;
+      }
+    }else {
+      this.leaning = false;
+      this.ModalRecheckApp = true;
+    }
+
+   
+
+  
+    }
 
 
   }

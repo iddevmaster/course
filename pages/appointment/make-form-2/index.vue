@@ -20,7 +20,6 @@
     </div>
     <div class="container py-3 py-md-4 py-lg-5 appcontent">
      <FormStep1></FormStep1>
-     <FormStep2></FormStep2>
     </div>
     <div class="container">
         <p>Note: For information about standard procedure to get driving license, please click here: <span><a href="" class="text-primary">Driving license prodedure</a></span></p>
@@ -29,7 +28,6 @@
 <script  setup>
 import { useAuthStore } from '@/stores/auth';
 import FormStep1 from '@/components/appointment/make/FormStep1.vue';
-import FormStep2 from '@/components/appointment/make/FormStep2.vue';
 import { AppointmentsStore } from '@/stores/appointment';
 
 

@@ -508,7 +508,9 @@ const auth = useAuthStore();
 await store.Zipcode();
 await store.Country();
 await store.ManageProfile();
-if(store.formdetail.status == 'W'){
+
+
+if(store.formdetail.status != 'W'){
   Swal.fire({
     allowEscapeKey: false,
     allowOutsideClick: false,
