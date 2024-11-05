@@ -19,8 +19,8 @@
       </div>
     </div>
     <div class="container py-3 py-md-4 py-lg-5 appcontent">
-     <FormStep1></FormStep1>
-     <FormStep2></FormStep2>
+     <FormStep1 v-if="store.IsStep1"></FormStep1>
+     <FormStep2 v-if="store.IsStep2"></FormStep2>
     </div>
     <div class="container">
         <p>Note: For information about standard procedure to get driving license, please click here: <span><a href="" class="text-primary">Driving license prodedure</a></span></p>
@@ -42,7 +42,10 @@ const auth = useAuthStore();
   const store = AppointmentsStore();
 await store.fetchDltType()
 store.user_id = auth.user_id;
-
+store.formselectapp.user_full_name = auth.formuser.user_full_name
+store.formselectapp.identification_number = auth.formdetail.identification_number
+store.IsStep1 = true;
+store.IsStep2 = false;
   if(auth.formdetail.verify_account == 'system_active'){
     router.push('/appointment/make-form');
    }else {

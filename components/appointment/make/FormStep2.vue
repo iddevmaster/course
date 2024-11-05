@@ -3,20 +3,33 @@
     <div class="row" >
     <div>
       <label for="classType" class="form-label mb-0">Class Type:</label>
-        <input type="text" class="form-control" id="fname" placeholder="Enter full name" >
+      <select
+          class="form-select"
+          id="classType"
+          aria-label="Default select example"
+          v-model="store.formselectapp.dlt_code" disabled
+        >
+          <option selected disabled value="">
+            {{ $t("page_appoint_type_label_select_dlt") }}
+          </option>
+          <option v-for="(item, index) in store.dlt" :value="item.dlt_code">
+            {{ item.dlt_code }} :
+            {{ locale == "la" ? item.dlt_name_lo : item.dlt_name_eng }}
+          </option>
+        </select>
     </div>
   </div>
   <div class="row">
     <div>
       <label for="classType" class="form-label mb-0">Full name:</label>
-        <input type="text" class="form-control" id="fname" placeholder="Enter full name" >
+        <input type="text" class="form-control" id="fname" placeholder="Enter full name" v-model="store.formselectapp.user_full_name"  disabled>
     </div>
   </div>
 
   <div class="row">
     <div>
       <label for="classType" class="form-label mb-0">Citizen ID / Passport Number:</label>
-        <input type="text" class="form-control" id="fname" placeholder="Enter full name" >
+        <input type="text" class="form-control" id="fname" placeholder=" Passport Number"  v-model="store.formselectapp.identification_number"  disabled>
     </div>
   </div>
 
@@ -29,23 +42,36 @@
                 </div>
                 <hr>
                 <p>Please select your preferred time.</p>
-                
+                {{ store.events }}
                 <div class="mb-3">
                     <label for="apptime" class="form-label mb-0">Appointment time:</label>
-                    <select class="form-select" id="apptime" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select" id="apptime" aria-label="Default select example"  v-model="store.events" >
+                      <option selected disabled value="">
+            {{ $t("page_appoint_type_label_select_dlt") }}
+          </option>
+          <option v-for="(item, index) in store.event" :value="item">
+            {{format(item.ap_date_first)}} {{formatty(item.type)}}, Class {{item.dlt_code}} . Avalable: {{calcu(item.ap_quota,item.available)}} seats
+
+          </option>
                     </select>
                 </div> 
 
+
+                <div class="d-flex gap-3 justify-content-center">
+                     <button class="btn btn-primary" @click="BackApp()"><i class="icofont-double-left"></i> Back </button>
+      <button class="btn btn-success" @click="SaveApp()">
+        Next <i class="icofont-double-right"></i>
+      </button>
+
+      <!-- <button class="btn btn-success">Submit <i class="icofont-double-right"></i></button> -->
+    </div>
   </section>
 
 
 
 </template>
 <script  setup>
+import moment from "moment";
 import { useAuthStore } from "@/stores/auth";
 import { AppointmentsStore } from "@/stores/appointment";
 import { useI18n } from "vue-i18n";
@@ -85,7 +111,85 @@ const Hide = async () => {
 store.ModalRecheckApp = false;
 };
 
+const BackApp = async () => {
+store.IsStep1 = true
+store.IsStep2 = false
+};
+const SaveApp = async () => {
+  if (store.events == "") {
+    await Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Select Appointment time!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    return false
+  }
+let save = await store.saveAppointmentNew()
+console.log(save);
+if(save.status == 200){
+  // await Swal.fire({
+  //     position: "top-end",
+  //     icon: "error",
+  //     title: "Select Appointment time!",
+  //     showConfirmButton: false,
+  //     timer: 1500,
+  //   });
+
+    await Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Complate!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
+ await router.push('/appointment');
+}
+if(save.status == 201){
+  await Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "ລົ້ມເຫລວໃນການບັນທຶກຂໍ້ມູນ ມີຢູ່ແລ້ວ!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+}
+if(save.status == 202){
+  await Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "QUATA ເຕັມ!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+}
+};
+
 const { locale, setLocale } = useI18n();
+
+
+const format = (time) => {
+  return moment(time).format("DD/MM/YYYY");
+};
+
+
+const formatty = (i) => {
+  if(i == 1){
+    return '08:00';
+  }else {
+    return '16:00';
+  }
+
+};
+
+const calcu = (i,x) => {
+
+let a = i-x;
+return a;
+};
+
 </script>
 <style  scoped>
 

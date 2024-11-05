@@ -7,7 +7,7 @@
           class="form-select"
           id="classType"
           aria-label="Default select example"
-          v-model="store.formselectapp.dlt_code"
+          v-model="store.formselectapp.dlt_code" @change="changedlt($event)"
         >
           <option selected disabled value="">
             {{ $t("page_appoint_type_label_select_dlt") }}
@@ -145,6 +145,8 @@ const RecheckApp = async () => {
 
 
  if(store.leaning === true){
+    store.IsStep1 = false;
+    store.IsStep2 = true;
   //  router.push("/appointment/make-form-2");
  }
 
@@ -155,6 +157,15 @@ const RecheckApp = async () => {
 const Hide = async () => {
 store.ModalRecheckApp = false;
 };
+
+const changedlt = async (dlt) => {
+
+await store.fetchAppointmentNew();
+};
+
+
+
+
 
 const { locale, setLocale } = useI18n();
 </script>

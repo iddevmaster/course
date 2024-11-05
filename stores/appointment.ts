@@ -8,6 +8,8 @@ export const AppointmentsStore = defineStore({
     appgroup: [],
     reserve: [],
     event:[],
+    IsStep1:true,
+    IsStep2:false,
     reservepass:[],
     reservefisrt:[],
     tooltipText: 'This is a tooltip',
@@ -145,7 +147,11 @@ export const AppointmentsStore = defineStore({
     formselectapp: {
       user_id: null,
       dlt_code: "",
+      user_full_name: "",
+      identification_number: "",
+      ap_id:""
     },
+    events:"",
     ModalRecheckApp:false,
     formsearchcoursestory: {
       page: 1,
@@ -379,7 +385,37 @@ this.leaning = false;  ///ไม่ผ่าน
    
 
   
-    }
+    },
+
+    async fetchAppointmentNew() {
+      try {
+        this.event = []
+        const data = await ApiService.get('/appointment/event/new/?ap_learn_type=2'+ '&dlt_code=' + this.formselectapp.dlt_code + '').then(response => {
+
+          if (response.data.length > 0) {
+            this.event = response.data
+          } 
+        });
+      } catch (error) {
+        return false;
+      }
+    },
+
+    async saveAppointmentNew() {
+      this.formselectapp.ap_date_first = this.events.ap_date_first
+      this.formselectapp.ap_id = this.events.ap_id
+      try {
+        const data = await ApiService.post('/appointment/reserve/new/create', this.formselectapp).then(x => {
+          console.log(this.formselectapp);
+return x;
+        });
+        return data;
+      } catch (error) {
+        return false;
+      }
+
+    },
+
 
 
   }
