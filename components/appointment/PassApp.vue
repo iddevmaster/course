@@ -5,8 +5,13 @@
               <tbody  v-for="(item, index) in store.reservepass"
                       :key="item.ap_id">
                 <tr>
-                  <td class="px-5">{{ dayforma(item.udp_date) }}, for Type: {{ item.appointment_detail.dlt_code }}, @ Savannakhet</td>
+                  <td class="px-5">{{ format(item.ap_date_first) }}  {{formatty(item.type)}}, for Type: {{ item.dlt_code }}, 
+                    @ Savannakhet,
+                    Appointment ID: {{ item.ap_number }}
+                  </td>
+                  
                 </tr>
+
               </tbody>
             </table>
           </div>
@@ -49,6 +54,29 @@ const route = useRoute();
 // };
 const dayforma = (day) => {
   return moment(day).format("DD/MM/yyyy HH:mm");
+};
+
+
+
+
+const format = (time) => {
+  return moment(time).format("DD/MM/YYYY");
+};
+
+
+const formatty = (i) => {
+  if(i == 1){
+    return '08:00';
+  }else {
+    return '16:00';
+  }
+
+};
+
+const calcu = (i,x) => {
+
+let a = i-x;
+return a;
 };
 
 

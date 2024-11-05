@@ -231,7 +231,7 @@ this.reservefisrt = []
      this.reservepass = [];
 
 for (var i = 0; i < this.reserve.length; i++) {
-  let e = moment(this.reserve[i].appointment_detail.ap_date_start).format("YYYY-M-DD");
+  let e = moment(this.reserve[i].ap_date_first).format("YYYY-M-DD");
 
 var myDatestart = Date.parse(e);
 var myDateNow = Date.parse(date);

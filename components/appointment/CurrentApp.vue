@@ -1,35 +1,57 @@
 <template>
-   <div v-if="store.reservefisrt" >
- 
-           <section class="px-4 py-3 border my-4" v-for="(item, index) in store.reservefisrt" :key="index">
-    
-          <div class="row">
+  <div v-if="store.reservefisrt">
+    <section
+      class="px-4 py-3 border my-4"
+      v-for="(item, index) in store.reservefisrt"
+      :key="index"
+    >
+      <div class="row">
+        <div class="col-12">
+          <p class="mb-0">
+            <b> {{ format(item.ap_date_first) }} {{ formatty(item.type) }} </b>
+          </p>
+          <p class="mb-0">
+            <b> Class{{ item.dlt_code }} -</b> 
+            {{ coverdlt(item.appointment_detail.dlt_code) }}
+          </p>
+          <p class="mb-0">
+            {{ $t("page_appoint_location") }} : Savannakhet
+          </p>
 
-              <div class="col-12 "
-                      >
-                
-                <p class="mb-0"><b>{{ dayforma(item.appointment_detail.ap_date_start) }}</b></p>
-                <p class="mb-0"><b>{{ $t("page_appoint_type_code") }} </b> {{ coverdlt(item.appointment_detail.dlt_code) }}</p>
-                <p class="mb-0"><b>{{ $t("page_appoint_full_name") }} : {{ auth.formuser.user_prefrix }}. {{ auth.formuser.user_firstname }} {{ auth.formuser.user_lastname }}</b></p>
-                <p class="mb-0"><b>{{ $t("page_appoint_passpost") }} :  {{ auth.formdetail.identification_number}}</b></p>
-                <p class="mb-0"><b>{{ $t("page_appoint_location") }} : Savannakhet</b></p>
-                
-              </div>
+          <p class="mb-0">
+            <b> Appointment ID : {{ item.ap_number }} </b>
+          </p>
+
+          <p class="mb-0">
+            <b
+              >{{ auth.formuser.user_prefrix }} {{ auth.formuser.user_firstname }} {{ auth.formuser.user_lastname }}
+           </b
+            >
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+         x
       
-          </div>
-          <p class="pt-3" style="font-size:0.8rem;">{{ $t("page_appoint_note") }},</p>
-        </section>
-   
+        </div>
+        <div class="col-6">
+         x
+      
+        </div>
+      </div>
+      <p class="pt-3" style="font-size: 0.8rem">
+        {{ $t("page_appoint_note") }},
+      </p>
+    </section>
   </div>
 </template>
 <script lang="ts" setup>
-
-
 import { useAuthStore } from "@/stores/auth"; // import the auth store we just created
 import { storeToRefs } from "pinia";
 import { defineComponent } from "vue";
 import { AppointmentsStore } from "@/stores/appointment";
-
 
 import { useRoute } from "vue-router";
 
@@ -47,10 +69,26 @@ const dayforma = (day) => {
 };
 
 const coverdlt = (code) => {
-  let dt = store.dlt.find((item) => item.dlt_code == code );
-  return dt.dlt_description_english
+  let dt = store.dlt.find((item) => item.dlt_code == code);
+  return dt.dlt_description_english;
 };
 
+const format = (time) => {
+  return moment(time).format("DD/MM/YYYY");
+};
+
+const formatty = (i) => {
+  if (i == 1) {
+    return "08:00";
+  } else {
+    return "16:00";
+  }
+};
+
+const calcu = (i, x) => {
+  let a = i - x;
+  return a;
+};
 </script>
 <style scoped>
 button {
