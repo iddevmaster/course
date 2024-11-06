@@ -49,7 +49,7 @@ store.IsStep2 = false;
   if(auth.formdetail.verify_account == 'system_active'){
     router.push('/appointment/make-form');
    }else {
-    router.push('/appointment/make');
+    router.push('/appointment');
    }
 
 </script>
