@@ -8,7 +8,7 @@ export const AppointmentsStore = defineStore({
     appgroup: [],
     reserve: [],
     event:[],
-    IsStep1:true,
+    IsStep1:false,
     IsStep2:false,
     reservepass:[],
     reservefisrt:[],
