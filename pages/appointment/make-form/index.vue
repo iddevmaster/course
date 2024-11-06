@@ -39,6 +39,8 @@ import { AppointmentsStore } from '@/stores/appointment';
 
 const auth = useAuthStore();
   const router = useRouter();
+
+  router.push('/profile/account');
   const store = AppointmentsStore();
 await store.fetchDltType()
 store.user_id = auth.user_id;
@@ -46,11 +48,11 @@ store.formselectapp.user_full_name = auth.formuser.user_full_name
 store.formselectapp.identification_number = auth.formdetail.identification_number
 store.IsStep1 = true;
 store.IsStep2 = false;
-  if(auth.formdetail.verify_account == 'system_active'){
-    router.push('/appointment/make-form');
-   }else {
-    router.push('/profile/account');
-   }
+  // if(auth.formdetail.verify_account == 'system_active'){
+  //   router.push('/appointment/make-form');
+  //  }else {
+  //   router.push('/profile/account');
+  //  }
 
 </script>
 <style>
