@@ -415,8 +415,11 @@ return x;
       }
 
     },
+    async CancelAp() {
+      console.log(this.reservefisrt);
+    }
 
-
+    
 
   }
 })

@@ -32,12 +32,18 @@
       </div>
 
       <div class="row">
-        <div class="col-6">
-         x
+        <div class="col-9">
+       
       
         </div>
-        <div class="col-6">
-         x
+        <div class="col-3">
+          <qrcode-vue
+      :value="text"
+      :size="size"
+      :level="errorCorrectionLevel"
+      :bg-color="bgColor"
+      :fg-color="fgColor"
+    />
       
         </div>
       </div>
@@ -46,6 +52,14 @@
       </p>
     </section>
   </div>
+  <div class="col-12 col-md-6 py-2">
+              <button
+                class="btn btn-danger"
+                style="width: 50%; border-radius: 0px" @click="CancelApp()"
+              >
+              Cancel Appointment
+              </button>
+    </div>
 </template>
 <script lang="ts" setup>
 import { useAuthStore } from "@/stores/auth"; // import the auth store we just created
@@ -54,7 +68,7 @@ import { defineComponent } from "vue";
 import { AppointmentsStore } from "@/stores/appointment";
 
 import { useRoute } from "vue-router";
-
+import QrcodeVue from 'qrcode.vue'
 import moment from "moment";
 import Swal from "sweetalert2";
 import { useI18n } from "vue-i18n";
@@ -63,6 +77,20 @@ const { locale, setLocale } = useI18n();
 const auth = useAuthStore();
 const store = AppointmentsStore();
 const route = useRoute();
+
+
+const text = ref('https://example.com') // QR code content
+const size = ref(200) // QR code size in pixels
+const errorCorrectionLevel = ref('H') // Error correction level ('L', 'M', 'Q', 'H')
+const bgColor = ref('#ffffff') // Background color
+const fgColor = ref('#000000') // Foreground color
+
+
+const CancelApp = async () => {
+
+await store.CancelAp();
+
+}
 
 const dayforma = (day) => {
   return moment(day).format("DD/MM/yyyy HH:mm");
@@ -157,5 +185,22 @@ button {
 
 .tooltip-container:hover .tooltip {
   opacity: 1;
+}
+
+.qr-container {
+  /* Custom styling for the container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 5px solid #007bff; /* Blue border */
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.qr-container canvas {
+  /* Additional styling for the QR code canvas */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 </style>
