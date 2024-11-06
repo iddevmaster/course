@@ -54,6 +54,11 @@ store.IsStep2 = false;
   //   router.push('/profile/account');
   //  }
 
+
+  onMounted(() => {
+    router.push('/profile/account');
+    });
+
 </script>
 <style>
     .appcontent{
