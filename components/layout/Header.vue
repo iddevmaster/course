@@ -136,31 +136,31 @@
                        
                         <i class="icofont-users"></i> {{ $t("account") }}  <i class="icofont-arrow-down"></i>
                         <div v-if="useError.formdetail.verify_account == 'system_active'">
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"
+                        <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"
                           id="badgeSpan" >
                           <i class="icofont-check"></i><span id="badgeText">{{ $t("system_active") }}</span>
-                        </span>
+                        </span> -->
                         </div>
 
                         <div v-else-if="useError.formdetail.verify_account == 'phone_active'">
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"
+                        <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"
                           id="badgeSpan" >
                           <i class="icofont-check"></i><span id="badgeText">{{ $t("phone_active") }}</span>
-                        </span>
+                        </span> -->
                         </div>
 
                         <div v-else-if="useError.formdetail.verify_account == 'phone_unactive'">
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                        <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                           id="badgeSpan" >
                           <i class="icofont-check"></i><span id="badgeText">{{ $t("phone_unactive") }}</span>
-                        </span>
+                        </span> -->
                         </div>
                   
                         <div v-else>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                        <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                           id="badgeSpan" >
                           <i class="icofont-close"></i><span id="badgeText">{{ $t("head_notverify") }}</span>
-                        </span>
+                        </span> -->
                         </div>
 
                       </a>
