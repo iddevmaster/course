@@ -63,10 +63,11 @@ export const ResultStore = defineStore({
       
           for (var x = 0; x < this.result.length; x++) {
             let dl = sto.dlt.find(item => item.dlt_code === this.result[x].dlt_code)
-            const a = { mr_id: this.result[x].mr_id, mr_score: this.result[x].mr_score, mr_learn_type: this.result[x].mr_learn_type, mr_status: this.result[x].mr_status, crt_date: this.result[x].crt_date, dlt_code: this.result[x].dlt_code }
+            const a = { mr_id: this.result[x].mr_id, mr_score: this.result[x].mr_score, mr_learn_type: this.result[x].mr_learn_type, mr_status: this.result[x].mr_status, crt_date: this.result[x].crt_date, dlt_code: this.result[x].dlt_code,user_full: this.result[x].user_full }
             aa.push(a)
           }
           this.resultall = aa;
+      
 
         });
         return data

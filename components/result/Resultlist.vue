@@ -6,18 +6,20 @@
             <table class="table table-hover mb-0" v-if="store.resultall.length > 0">
               <thead class="table-light" >
                 <tr>
-                  <th scope="col" style="text-align: center">{{ $t("result_id") }}</th>
+                  <th scope="col" style="text-align: center">#</th>
                   <th scope="col" style="text-align: center">{{ $t("result_score") }}</th>
                   <th scope="col" style="text-align: center">{{ $t("result_type") }}</th>
                  
                   <th scope="col" style="text-align: center">{{ $t("result_details") }}</th>
                   <th scope="col" style="text-align: center">{{ $t("result_time") }}</th>
+                     <th scope="col" style="text-align: center"> ສະຖານທີ່</th>
                   <th scope="col" style="text-align: center">{{ $t("result_status") }}</th>
+                  
                 </tr>
               </thead>
               <tbody >
                 <tr v-for="(item, index) in store.resultall">
-                  <th scope="row" style="text-align: center">
+                  <th style="text-align: center">
                     {{ index + 1 }}
                   </th>
                   <td style="text-align: center">
@@ -44,13 +46,19 @@
                 </td>
 
                     <td style="text-align: center">
-                    {{ format(item.crt_date) }}
+                    {{ item.crt_date }}
+                  </td>
+                   <td style="text-align: center">
+                      <span  >{{ item.user_full }}</span>
+                 
                   </td>
                   <td style="text-align: center">
                       <span v-if="item.mr_status == 'pass'" class="badge badge-success" style="background-color: green; font-size: 1.1rem;">{{ $t("page_type_test_pass") }}</span>
                     <span v-else  class="badge badge-danger"  style="background-color: red;font-size: 1.1rem;">{{ $t("page_type_test_fail") }}</span>
                   </td>
+                     
                 </tr>
+                
               </tbody>
             </table>
 
