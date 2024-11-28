@@ -21,6 +21,8 @@ dlt_all:[],
    
     async fetchDltUser() {
 this.dlt_all = [];
+this.dlt_lastes = [];
+
       try {
         const data = await ApiService.get('/dlt_card/listall/?user_id='+this.user_id).then(response => {
 

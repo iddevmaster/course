@@ -1,102 +1,112 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+        <div class="table-responsive shadow-sm rounded"></div>
+      </div>
+
+      <div
+        class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+        v-for="(item, index) in store.dlt_lastes"
+      >
         <div class="table-responsive shadow-sm rounded">
-          <table class="table table-hover mb-0" v-if="store.dlt_all.length > 0">
-            <thead class="table-light">
-              <tr>
-                <th scope="col" style="text-align: center">#</th>
-                <th scope="col" style="text-align: center">
-                  {{ $t("result_score") }}
-                </th>
-                <th scope="col" style="text-align: center">
-                  {{ $t("result_type") }}
-                </th>
-
-                <th scope="col" style="text-align: center">
-                  {{ $t("result_details") }}
-                </th>
-                <th scope="col" style="text-align: center">
-                  {{ $t("result_time") }}
-                </th>
-                <th scope="col" style="text-align: center">ສະຖານທີ່</th>
-                <th scope="col" style="text-align: center">
-                  {{ $t("result_status") }}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(item, index) in store.dlt_all">
-                <th style="text-align: center">
-                  {{ index + 1 }}
-                </th>
-                <th style="text-align: center">
-                  {{ item }}
-                </th>
-              </tr>
-            </tbody>
-          </table>
-
-          <div v-else>
-            <div class="border p-3" style="text-align: center">
-              {{ $t("page_no_data") }}
+          <div
+            class="gridarea__wraper gridarea__wraper__1 gridarea__course__list"
+            data-aos="fade-up"
+          >
+            <div class="gridarea__img x1">
+              <span class="cursor-pointer"
+                ><img :src="coverimage(item.front_img)" alt="grid"
+              /></span>
             </div>
+          </div>
+          <div class="gridarea__heading" >
+            <p class="fw-bold mb-0" style="
+    text-align: center;
+">ເລກທີ: ຂສ  0037730</p>
+          </div>
+          <div class="gridarea__heading">
+            <p class="fw-bold mb-0" style="
+    text-align: center;
+">ອອກຊື່: ທ້າວ ສົມສັກ ຈ່າງດາບຸດ</p>
+          </div>
+          <div class="gridarea__heading">
+            <p class="fw-bold mb-0" style="
+    text-align: center;
+">ປະເພດອະນຸຍາດ:  AB</p>
+          </div>
+          <div class="gridarea__heading">
+            <p class="fw-bold mb-0" style="
+    text-align: center;
+">ໝົດອາຍຸ : 27/12/2028</p>
+          </div>
+          <div class="gridarea__heading">
+            <p class="fw-bold mb-0" style="
+    text-align: center;
+">ອອກທີ່: ກຄພຂ ຈຳປາສັກ</p>
           </div>
         </div>
       </div>
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+      
+      </div>
+  
 
-      <div class="col-xl-12 col-lg-12 col-md-12 col-12" v-for="(item, index) in store.dlt_all">
+    
+
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="gridarea__heading">
+        <h5> {{ $t("my_licen_his") }}</h5>
+      </div>
+      <div
+        class="col-xl-12 col-lg-12 col-md-12 col-12"
+        v-for="(item, index) in store.dlt_all"
+      >
         <div
           class="tab-content tab__content__wrapper with__sidebar__content"
           id="myTabContent"
         >
-         
           <div
             class="gridarea__wraper gridarea__wraper__1 gridarea__course__list"
             data-aos="fade-up"
           >
             <div class="gridarea__img">
               <span class="cursor-pointer"
-                ><img
-
-                  :src="coverimage(item.front_img)"
-                
-                  alt="grid"
+                ><img :src="coverimage(item.front_img)" alt="grid"
               /></span>
             </div>
             <div class="gridarea__content">
               <div class="gridarea__heading">
-            <p class="fw-bold mb-0">ເລກທີ: {{item.number_licen}}</p>
+                <p class="fw-bold mb-0">ເລກທີ: {{ item.number_licen }}</p>
               </div>
               <div class="gridarea__heading">
-                <p class="fw-bold mb-0">ອອກຊື່: {{item.dlt}}</p>
+                <p class="fw-bold mb-0">ອອກຊື່: {{ item.dlt }}</p>
               </div>
               <div class="gridarea__heading">
-                <p class="fw-bold mb-0">ປະເພດອະນຸຍາດ:  {{item.dlt}}</p>
+                <p class="fw-bold mb-0">ປະເພດອະນຸຍາດ: {{ item.dlt }}</p>
               </div>
             </div>
-                    <div class="gridarea__content">
+            <div class="gridarea__content">
               <div class="gridarea__heading">
-            <p class="fw-bold mb-0">ໝົດອາຍຸ: {{item.expiry_date}}</p>
+                <p class="fw-bold mb-0">ໝົດອາຍຸ: {{ item.expiry_date }}</p>
               </div>
               <div class="gridarea__heading">
-                <p class="fw-bold mb-0">ອອກທ:{{item.etc}}</p>
+                <p class="fw-bold mb-0">ອອກທີ່:{{ item.etc }}</p>
               </div>
-           
             </div>
 
-                    <div class="gridarea__content">
+            <div class="gridarea__content">
               <div class="gridarea__heading">
-          
-            <span class="fw-bold mb-0">ສະຖານະ:</span>   <span style="color:red"> ໝົດອາຍຸ</span>
+                <span class="fw-bold mb-0">ສະຖານະ:</span>
+                <span style="color: red"> ໝົດອາຍຸ</span>
               </div>
-           
             </div>
           </div>
-        
         </div>
-     
       </div>
     </div>
   </div>
@@ -128,7 +138,6 @@ const covertdtl = (x) => {
   return item[0];
 };
 
-
 function coverimage(i) {
   let im = ApiService.image(i);
   return im;
@@ -136,6 +145,11 @@ function coverimage(i) {
 </script>
 
 <style>
+
+.x1{
+width: 100%!important;
+}
+
 .xt3e5 {
   padding: 30px 50px 10px 10px;
 }
