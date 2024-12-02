@@ -12,7 +12,7 @@
           </p>
           <p class="mb-0">
             <b> Class {{ item.dlt_code }} -</b> 
-            {{ coverdlt(item.dlt_code) }}
+            {{ locale == "la" ? coverdlt(item.dlt_code).dlt_description_loas : coverdlt(item.dlt_code).dlt_description_english }}
           </p>
           <p class="mb-0">
             {{ $t("page_appoint_location") }} : {{item.group}} -  {{item.province_name}}
@@ -52,7 +52,7 @@
       </p>
     </section>
   </div>
-  <div class="col-12 col-md-6 py-2">
+  <div class="col-12 col-md-6 py-2" v-if="store.reservefisrt">
               <button
                 class="btn btn-danger"
                 style="width: 50%; border-radius: 0px" @click="CancelApp()"
@@ -98,7 +98,7 @@ const dayforma = (day) => {
 
 const coverdlt = (code) => {
   let dt = store.dlt.find((item) => item.dlt_code == code);
-  return dt.dlt_description_english;
+  return dt;
 };
 
 const format = (time) => {

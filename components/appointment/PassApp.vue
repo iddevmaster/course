@@ -1,8 +1,8 @@
 <template>
 
-          <div class="d-flex justify-content-center" v-if="store.reservepass && store.reservepass.length>0">
+          <div class="d-flex justify-content-center" v-if="store.reserve && store.reserve.length>0">
             <table class="table table-bordered">
-              <tbody  v-for="(item, index) in store.reservepass"
+              <tbody  v-for="(item, index) in store.reserve"
                       :key="item.ap_id">
                 <tr>
                   <td class="px-5">{{ format(item.ap_date_first) }}  {{item.time}}, for Type: {{ item.dlt_code }}, 

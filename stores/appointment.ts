@@ -227,7 +227,7 @@ export const AppointmentsStore = defineStore({
         const data = await ApiService.get('/appointment/reserve/get/'+this.user_id).then(response => {
 
         if(response.data){
-          response.data.sort((a, b) => (a.id > b.id ? 1 : -1));
+     
           this.reserve = response.data
      
           return true; 
@@ -256,11 +256,14 @@ var myDatestart = Date.parse(e);
 var myDateNow = Date.parse(date);
 
 
-if(myDatestart >= myDateNow){
-  this.reservefisrt.push(this.reserve[i])
-}else {
-  this.reservepass.push(this.reserve[i])
+if(i == 0) {
+  if(myDatestart >= myDateNow){
+    this.reservefisrt.push(this.reserve[i])
+  }
+
 }
+
+
 }
     },
 
