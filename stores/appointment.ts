@@ -227,9 +227,8 @@ export const AppointmentsStore = defineStore({
         const data = await ApiService.get('/appointment/reserve/get/'+this.user_id).then(response => {
 
         if(response.data){
-     
           this.reserve = response.data
-     
+          
           return true; 
         }else {
           return true;
@@ -252,6 +251,7 @@ this.reservefisrt = []
 
 for (var i = 0; i < this.reserve.length; i++) {
   let e = moment(this.reserve[i].ap_date_first).format("YYYY-M-DD");
+console.log(this.reserve[i]);
 var myDatestart = Date.parse(e);
 var myDateNow = Date.parse(date);
 
@@ -265,6 +265,10 @@ if(i == 0) {
 
 
 }
+
+
+this.reserve.sort((a, b) => new Date(b.ap_date_first) - new Date(a.ap_date_first));
+
     },
 
     async fetchApppoint() {
