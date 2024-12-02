@@ -3,11 +3,11 @@
     <div class="row" >
     <div>
       <label for="classType" class="form-label mb-0">Class Type:</label>
-      <select
+      <select 
           class="form-select"
           id="classType"
           aria-label="Default select example"
-          v-model="store.formselectapp.dlt_code" disabled
+          v-model="store.formselectapp.dlt_code" disabled 
         >
           <option selected disabled value="">
             {{ $t("page_appoint_type_label_select_dlt") }}
@@ -37,7 +37,7 @@
 
   <div class="mb-3">
                     <label for="location" class="form-label mb-0">Location: </label>
-                    <select class="form-select" id="apptime" aria-label="Default select example"  v-model="store.formselectapp.group_id" >
+                    <select class="form-select" id="apptime" aria-label="Default select example"  v-model="store.formselectapp.group_id"  @change="changeGroupId($event)">
                       <option selected disabled value="">
             {{ $t("page_appoint_type_label_select_dlt") }}
           </option>
@@ -84,15 +84,21 @@ import { useAuthStore } from "@/stores/auth";
 import { AppointmentsStore } from "@/stores/appointment";
 import { useI18n } from "vue-i18n";
 import Swal from "sweetalert2";
-definePageMeta({
-  middleware: "auth", // this should match the name of the file inside the middleware directory
-});
+
 
 const auth = useAuthStore();
 const router = useRouter();
 const store = AppointmentsStore();
 await store.fetchDltType();
 await store.History();
+
+
+const changeGroupId = async (item) => {
+store.formselectapp.group_id = item.target.value
+store.events = ""
+await store.fetchAppointmentNewlist();
+};
+
 
 const RecheckApp = async () => {
   if (store.formselectapp.dlt_code == "") {
@@ -118,6 +124,11 @@ const RecheckApp = async () => {
 const Hide = async () => {
 store.ModalRecheckApp = false;
 };
+
+
+
+
+
 
 const BackApp = async () => {
 store.IsStep1 = true
@@ -193,6 +204,8 @@ const { locale, setLocale } = useI18n();
 const format = (time) => {
   return moment(time).format("DD/MM/YYYY");
 };
+
+
 
 
 const formatty = (i) => {

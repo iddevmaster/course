@@ -12,6 +12,7 @@ export const AppointmentsStore = defineStore({
     IsStep2:false,
     reservepass:[],
     reservefisrt:[],
+    reservefuture:[],
     tooltipText: 'This is a tooltip',
     isShowApp: false,
     loadingApp:false,
@@ -225,7 +226,6 @@ export const AppointmentsStore = defineStore({
       try {
         const data = await ApiService.get('/appointment/reserve/get/'+this.user_id).then(response => {
 
- 
         if(response.data){
           response.data.sort((a, b) => (a.id > b.id ? 1 : -1));
           this.reserve = response.data
@@ -252,23 +252,15 @@ this.reservefisrt = []
 
 for (var i = 0; i < this.reserve.length; i++) {
   let e = moment(this.reserve[i].ap_date_first).format("YYYY-M-DD");
-console.log(this.reserve[i]);
 var myDatestart = Date.parse(e);
 var myDateNow = Date.parse(date);
 
 
-if(i == 0) {
-  if(myDatestart >= myDateNow){
-    this.reservefisrt.push(this.reserve[i])
-  }else {
-    this.reservepass.push(this.reserve[i])
-  }
-
-}
-else {
+if(myDatestart >= myDateNow){
+  this.reservefisrt.push(this.reserve[i])
+}else {
   this.reservepass.push(this.reserve[i])
 }
-
 }
     },
 
@@ -432,7 +424,7 @@ this.leaning = false;  ///ไม่ผ่าน
 
       try {
         this.event = []
-        const data = await ApiService.get('/appointment/event/newlist/?ap_learn_type=2'+ '&dlt_code=' + this.formselectapp.dlt_code + '').then(response => {
+        const data = await ApiService.get('/appointment/event/newlist/?ap_learn_type=2'+ '&dlt_code=' + this.formselectapp.dlt_code + '&group_id='+ this.formselectapp.group_id).then(response => {
 
           if (response.data.length > 0) {
             this.event = response.data
@@ -447,16 +439,15 @@ this.leaning = false;  ///ไม่ผ่าน
       this.formselectapp.ap_date_first = this.events.ap_date_first
       this.formselectapp.ap_id = this.events.ap_id
 
-      console.log(this.formselectapp);
-//       try {
-//         const data = await ApiService.post('/appointment/reserve/new/create', this.formselectapp).then(x => {
+      try {
+        const data = await ApiService.post('/appointment/reserve/new/create', this.formselectapp).then(x => {
       
-// return x;
-//         });
-//         return data;
-//       } catch (error) {
-//         return false;
-//       }
+return x;
+        });
+        return data;
+      } catch (error) {
+        return false;
+      }
 
     },
     async CancelAp() {

@@ -160,7 +160,7 @@ store.ModalRecheckApp = false;
 
 const changedlt = async (dlt) => {
 
-await store.fetchAppointmentNewlist();
+// await store.fetchAppointmentNewlist();
 };
 
 

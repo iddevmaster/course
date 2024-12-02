@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-12">
           <p class="mb-0">
-            <b> {{ format(item.ap_date_first) }} {{ formatty(item.type) }} </b>
+            <b> {{ format(item.ap_date_first) }} {{ item.time }}   </b>
           </p>
           <p class="mb-0">
             <b> Class {{ item.dlt_code }} -</b> 

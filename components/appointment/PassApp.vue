@@ -5,8 +5,8 @@
               <tbody  v-for="(item, index) in store.reservepass"
                       :key="item.ap_id">
                 <tr>
-                  <td class="px-5">{{ format(item.ap_date_first) }}  {{formatty(item.type)}}, for Type: {{ item.dlt_code }}, 
-                    @ Savannakhet,
+                  <td class="px-5">{{ format(item.ap_date_first) }}  {{item.time}}, for Type: {{ item.dlt_code }}, 
+                    @ {{item.group}} -  {{item.province_name}},
                     Appointment ID: {{ item.ap_number }}
                   </td>
                   
