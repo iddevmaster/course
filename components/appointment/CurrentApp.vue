@@ -11,11 +11,11 @@
             <b> {{ format(item.ap_date_first) }} {{ formatty(item.type) }} </b>
           </p>
           <p class="mb-0">
-            <b> Class{{ item.dlt_code }} -</b> 
-            {{ coverdlt(item.appointment_detail.dlt_code) }}
+            <b> Class {{ item.dlt_code }} -</b> 
+            {{ coverdlt(item.dlt_code) }}
           </p>
           <p class="mb-0">
-            {{ $t("page_appoint_location") }} : Savannakhet
+            {{ $t("page_appoint_location") }} : {{item.group}} -  {{item.province_name}}
           </p>
 
           <p class="mb-0">

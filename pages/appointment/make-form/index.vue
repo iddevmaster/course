@@ -48,8 +48,7 @@ store.formselectapp.user_full_name = auth.formuser.user_full_name
 store.formselectapp.identification_number = auth.formdetail.identification_number
 store.IsStep1 = true;
 store.IsStep2 = false;
-
-
+await store.fetchGroupID()
 
   onMounted(() => {
       if(auth.formdetail.verify_account == 'system_active'){

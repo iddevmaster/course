@@ -149,7 +149,8 @@ export const AppointmentsStore = defineStore({
       dlt_code: "",
       user_full_name: "",
       identification_number: "",
-      ap_id:""
+      ap_id:"",
+      group_id:"",
     },
     events:"",
     ModalRecheckApp:false,
@@ -188,6 +189,23 @@ export const AppointmentsStore = defineStore({
       }
     },
 
+    async fetchGroupID() {
+
+   
+      const User = {user_id:this.user_id};
+     
+      try {
+        const data = await ApiService.post('/master_data/group',User).then(response => {
+       this.group = response.data.data;
+     
+        });
+        return true
+      } catch (error) {
+        return false;
+      }
+    },
+
+
     async saverevs() {
       const savereve = {user_id:this.user_id,ap_id:this.ap_id}
 
@@ -206,6 +224,8 @@ export const AppointmentsStore = defineStore({
 
       try {
         const data = await ApiService.get('/appointment/reserve/get/'+this.user_id).then(response => {
+
+ 
         if(response.data){
           response.data.sort((a, b) => (a.id > b.id ? 1 : -1));
           this.reserve = response.data
@@ -232,19 +252,23 @@ this.reservefisrt = []
 
 for (var i = 0; i < this.reserve.length; i++) {
   let e = moment(this.reserve[i].ap_date_first).format("YYYY-M-DD");
-
+console.log(this.reserve[i]);
 var myDatestart = Date.parse(e);
 var myDateNow = Date.parse(date);
 
 
-
+if(i == 0) {
   if(myDatestart >= myDateNow){
     this.reservefisrt.push(this.reserve[i])
-
   }else {
-
     this.reservepass.push(this.reserve[i])
   }
+
+}
+else {
+  this.reservepass.push(this.reserve[i])
+}
+
 }
     },
 
@@ -254,6 +278,7 @@ var myDateNow = Date.parse(date);
          try {
         const data = await ApiService.get('/appointment/event/?ap_learn_type='+ this.form.ap_learn_type+'&dlt_code='+this.form.dlt_code+'').then(response => {
           this.event = response.data
+          
           if(response.data.length == 0){
             this.appgroup = []
             return true
@@ -388,6 +413,8 @@ this.leaning = false;  ///ไม่ผ่าน
     },
 
     async fetchAppointmentNew() {
+
+      
       try {
         this.event = []
         const data = await ApiService.get('/appointment/event/new/?ap_learn_type=2'+ '&dlt_code=' + this.formselectapp.dlt_code + '').then(response => {
@@ -401,18 +428,35 @@ this.leaning = false;  ///ไม่ผ่าน
       }
     },
 
-    async saveAppointmentNew() {
-      this.formselectapp.ap_date_first = this.events.ap_date_first
-      this.formselectapp.ap_id = this.events.ap_id
+    async fetchAppointmentNewlist() {
+
       try {
-        const data = await ApiService.post('/appointment/reserve/new/create', this.formselectapp).then(x => {
-          console.log(this.formselectapp);
-return x;
+        this.event = []
+        const data = await ApiService.get('/appointment/event/newlist/?ap_learn_type=2'+ '&dlt_code=' + this.formselectapp.dlt_code + '').then(response => {
+
+          if (response.data.length > 0) {
+            this.event = response.data
+          } 
         });
-        return data;
       } catch (error) {
         return false;
       }
+    },
+
+    async saveAppointmentNew() {
+      this.formselectapp.ap_date_first = this.events.ap_date_first
+      this.formselectapp.ap_id = this.events.ap_id
+
+      console.log(this.formselectapp);
+//       try {
+//         const data = await ApiService.post('/appointment/reserve/new/create', this.formselectapp).then(x => {
+      
+// return x;
+//         });
+//         return data;
+//       } catch (error) {
+//         return false;
+//       }
 
     },
     async CancelAp() {

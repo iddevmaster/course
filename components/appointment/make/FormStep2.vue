@@ -37,12 +37,20 @@
 
   <div class="mb-3">
                     <label for="location" class="form-label mb-0">Location: </label>
-                    <input type="text" class="form-control" id="location" placeholder="Enter your location">
+                    <select class="form-select" id="apptime" aria-label="Default select example"  v-model="store.formselectapp.group_id" >
+                      <option selected disabled value="">
+            {{ $t("page_appoint_type_label_select_dlt") }}
+          </option>
+          <option v-for="(item, index) in store.group" :value="item.group_id">
+           {{ item.name }} - {{ item.province_name }}
+
+          </option>
+                    </select>
                     <p><a href="" class="text-primary" style="font-size: 12px;">Click here for location on Map</a></p>
                 </div>
                 <hr>
                 <p>Please select your preferred time.</p>
-                {{ store.events }}
+               
                 <div class="mb-3">
                     <label for="apptime" class="form-label mb-0">Appointment time:</label>
                     <select class="form-select" id="apptime" aria-label="Default select example"  v-model="store.events" >
@@ -116,6 +124,18 @@ store.IsStep1 = true
 store.IsStep2 = false
 };
 const SaveApp = async () => {
+
+  if (store.formselectapp.group_id == "") {
+    await Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Select Location!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    return false
+  }
+
   if (store.events == "") {
     await Swal.fire({
       position: "center",
