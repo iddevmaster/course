@@ -1,78 +1,54 @@
 <template>
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-          <div class="table-responsive shadow-sm rounded">
-            <table class="table table-hover mb-0" v-if="store.resultall.length > 0">
-              <thead class="table-light" >
-                <tr>
-                  <th scope="col" style="text-align: center">#</th>
-                  <th scope="col" style="text-align: center">{{ $t("result_score") }}</th>
-                  <th scope="col" style="text-align: center">{{ $t("result_type") }}</th>
-                 
-                  <th scope="col" style="text-align: center">{{ $t("result_details") }}</th>
-                  <th scope="col" style="text-align: center">{{ $t("result_time") }}</th>
-                     <th scope="col" style="text-align: center"> ສະຖານທີ່</th>
-                  <th scope="col" style="text-align: center">{{ $t("result_status") }}</th>
-                  
-                </tr>
-              </thead>
-              <tbody >
-                <tr v-for="(item, index) in store.resultall">
-                  <th style="text-align: center">
-                    {{ index + 1 }}
-                  </th>
-                  <td style="text-align: center">
-                    {{ item.mr_score }}
-                  </td>
-                  <td style="text-align: center" v-if="item.mr_learn_type">
-                    <span v-if="item.mr_learn_type == 1">{{ $t("page_profile_type_test_y") }}</span>
-                    <span v-else>{{ $t("page_profile_type_test_n") }}</span>
-                  </td>
-                  <td>
-                  
-                  <span v-if="locale == 'la'">
-                    {{ item.dlt_code }} -
-                    {{
-                      covertdtl(item.dlt_code).dlt_description_loas
-                    }}</span
-                  >
-                  <span v-if="locale == 'en'">
-                    {{ item.dlt_code }} -
-                    {{
-                      covertdtl(item.dlt_code).dlt_description_english
-                    }}</span
-                  >
-                </td>
+      <div class="container">
+ 
 
-                    <td style="text-align: center">
-                    {{ item.crt_date }}
-                  </td>
-                   <td style="text-align: center">
-                      <span  >{{ item.user_full }}</span>
-                 
-                  </td>
-                  <td style="text-align: center">
-                      <span v-if="item.mr_status == 'pass'" class="badge badge-success" style="background-color: green; font-size: 1.1rem;">{{ $t("page_type_test_pass") }}</span>
-                    <span v-else  class="badge badge-danger"  style="background-color: red;font-size: 1.1rem;">{{ $t("page_type_test_fail") }}</span>
-                  </td>
-                     
-                </tr>
-                
-              </tbody>
-            </table>
+    <div class="row">
+      <div class="gridarea__heading">
+        <h5> ການແຈ້ງເຕືອນ ທັງໝົດ</h5>
+      </div>
+      <div
+        class="col-xl-12 col-lg-12 col-md-12 col-12"
+      
+      >
+        <div
+          class="tab-content tab__content__wrapper with__sidebar__content"
+          id="myTabContent"
+        >
+          <div v-for="index in 10" :key="index"
+            class="gridarea__wraper gridarea__wraper__1 gridarea__course__list"
+            data-aos="fade-up" style="
+    margin-bottom: 5px;"
 
-
-            <div v-else>
-              <div class="border p-3" style="text-align: center;" >{{ $t('page_no_data') }}</div>
+          >
+            <div class="gridarea__img">
+              <span class="cursor-pointer"
+                >
+                <img src="../../assets/img/brand/brand_3.png" alt="blog"  >
+            
+            </span>
+            </div>
+            <div class="gridarea__content">
+              <div class="gridarea__heading">
+                <p class="fw-bold mb-0">ໃບຂັບຂີ່ປະເພດ AB ຂອງທ່ານຈະໝົດອາຍຸ ໃນວັນທີ 30/04/2024</p>
+              </div>
+              <div class="gridarea__heading">
+                <p class="fw-bold mb-0">ກະລຸນາ ຕິດຕໍ່ຫາກອງຄຸ້ມຄອງພາຫະນະ ແລະ ການຂັບຂີ່ແຂວງ ເພື່ອຕໍ່ອາຍຸໃບຂັບຂີ່</p>
+              </div>
+             
+            </div>
+            <div class="gridarea__content_footer">
+              <div class="gridarea__heading">
+                <p class="fw-bold mb-0">01/04/2024 08:00:01</p>
+              </div>
+            
             </div>
 
-             
+    
           </div>
         </div>
-
       </div>
     </div>
+  </div>
 
 </template>
 <script lang="ts" setup>
@@ -104,124 +80,41 @@ const covertdtl = (x) => {
 };
 </script>
 
-<style>
-.xt3e5 {
-  padding: 30px 50px 10px 10px;
+<style scoped>
+
+
+
+@media only screen and (min-device-width: 768px){
+  .gridarea__wraper.gridarea__course__list .gridarea__img {
+    margin-bottom: 0;
+    width: 100% !important;
+
 }
 
-.hover-button:hover {
-  border: 2px solid #b217b4;
-  padding: 5px 40px;
 }
 
-.sec-l {
-  border-style: groove !important;
-  border-color: red !important;
-  #choice {
-    background-color: #4caf50;
-    color: white;
-    #card-index {
-      color: white;
-    }
+  @media only screen and (min-device-width: 320px){
+    .gridarea__wraper.gridarea__course__list .gridarea__img {
+    margin-bottom: 0;
+    width: 100% !important;
+
+}
+
   }
+
+
+  @media only screen and (min-width : 992px) {
+
 }
 
-.sec-choice {
-  border-style: groove !important;
-  border-color: red !important;
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
 
-  #answer {
-    background-color: #4caf50;
-    color: white;
-    #card-index {
-      color: white;
-    }
-  }
-}
-#answer {
-  background-color: #4caf50;
+  .gridarea__wraper.gridarea__course__list .gridarea__img {
+    margin-bottom: 0;
+    width: 20% !important;
 }
 
-.exma {
-  background-color: #5f2ded;
-  color: white;
-}
-.send {
-  background-color: #e06512;
-  color: white;
-}
-#choice-container {
-  /* border: 2px solid black; */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-#choice {
-  border-radius: 20px;
-  padding: 10px 10px 0px 15px;
-  background-color: white;
-  color: black;
-  border: 2px solid #4caf50;
-  transition-duration: 0.4s;
-  display: flex;
-}
-#choice:hover {
-  background-color: #4caf50; /* Green */
-  color: white;
-  #card-index {
-    color: white;
-  }
-}
-#choice-card {
-  padding: 5px;
-  border: unset !important;
 }
 
-#answer {
-  border-radius: 20px;
-  padding: 10px 10px 0px 15px;
-  background-color: white;
-  color: black;
-  border: 2px solid #040604;
-  transition-duration: 0.4s;
-  display: flex;
-}
-
-.answer-choice {
-  background-color: rgb(247, 247, 247);
-  border-radius: 20px;
-  padding: 10px 10px 0px 15px;
-  color: black;
-  border: 2px solid #040604;
-  transition-duration: 0.4s;
-  display: flex;
-}
-
-.answer-choice-success {
-  border-radius: 20px;
-  padding: 10px 10px 0px 15px;
-  color: black;
-  border: 2px solid #0fe50f;
-  transition-duration: 0.4s;
-  display: flex;
-}
-
-.answer-choice-danger {
-  background-color: rgb(227, 52, 21);
-  border-radius: 20px;
-  padding: 10px 10px 0px 15px;
-  color: black;
-  border: 2px solid #040604;
-  transition-duration: 0.4s;
-  display: flex;
-}
-
-#answer-card {
-  padding: 5px;
-  border: unset !important;
-}
-#card-index {
-  margin-right: 10px;
-}
 </style>

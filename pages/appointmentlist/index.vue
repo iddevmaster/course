@@ -35,16 +35,9 @@
 
         <div class="container py-3 py-md-4 py-lg-5 appcontent"  v-if="store.reservefisrt.length > 0">
          
-        <!-- <div class="row">
-          <div class="col-12 col-sm-12 col-lg-9" style="align-self: self-end;">
-        </div>
-          <div class="col-12 col-sm-12 col-lg-3">
-         <button class="btn btn-primary" style="width: 100%;background-color: rgb(42, 176, 229);border-radius: 0px;" @click="goToMenu()">Add New Appointment</button>
-        </div>
-        
-      </div> -->
 
-        
+
+  
       <article>
         <h3>{{ $t("page_appoint_current") }}</h3>
       <CurrentApp></CurrentApp>
