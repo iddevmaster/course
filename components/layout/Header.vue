@@ -36,7 +36,7 @@
                         <span>{{ $t("theory_test") }}</span>
                       </a>
                     </li>
-                    <li  @click="goToMenu('/appointment')">
+                    <li  @click="goToMenu('/appointmentlist')">
                 
                       <a class="headerarea__has__dropdown cursor-pointer">
                         

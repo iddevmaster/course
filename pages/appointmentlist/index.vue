@@ -15,7 +15,25 @@
       </div>
     </div>
 
-        <div class="container py-3 py-md-4 py-lg-5 appcontent">
+
+    <div class="container py-3 py-md-4 py-lg-5 appcontent" v-if="store.reservefisrt.length == 0">
+      <header class="header text-center">
+        <h5>Your current appointment to take driving exam:</h5>
+      </header>
+      <article class="text-center">
+        <section>
+          <p>You do not have any appointment to take driving exam yet.</p>
+        </section>
+        <section>
+          <button class="btn btn-primary" @click="goToMenu()">Add New Appointment</button>
+        </section>
+      </article>
+    </div>
+    <div class="container"  v-if="store.reservefisrt.length == 0">
+        <p>Note: For information about standard procedure to get driving license, please click here: <span><a href="" class="text-primary">Driving license prodedure</a></span></p>
+    </div>
+
+        <div class="container py-3 py-md-4 py-lg-5 appcontent"  v-if="store.reservefisrt.length > 0">
          
         <!-- <div class="row">
           <div class="col-12 col-sm-12 col-lg-9" style="align-self: self-end;">
@@ -27,7 +45,7 @@
       </div> -->
 
         
-      <article >
+      <article>
         <h3>{{ $t("page_appoint_current") }}</h3>
       <CurrentApp></CurrentApp>
         <section>
@@ -67,14 +85,21 @@ const profile = await auth.getProfile();
 store.user_id = auth.user_id;
 
 
+
+ await auth.getProfile() 
 await store.fetchApppointRes();
 await store.fetchApppointResCalulat();
 
 
-const goToMenu = async () => {
-  router.push('/appointment/make');
-};
+  const goToMenu = async () => {
 
+   if(auth.formdetail.verify_account == 'system_active'){
+    router.push('/appointment/make-form');
+   }else {
+    router.push('/appointment/make');
+   }
+  //  router.push(meun);
+  };
 
 </script>
 <style scoped>

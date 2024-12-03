@@ -7,12 +7,16 @@ export const AppointmentsStore = defineStore({
   state: () => ({
     appgroup: [],
     reserve: [],
+    popupcancelapp:false,
     event:[],
     IsStep1:false,
     IsStep2:false,
     reservepass:[],
     reservefisrt:[],
     reservefuture:[],
+    searchapp: {
+      ap_number: null
+    },
     tooltipText: 'This is a tooltip',
     isShowApp: false,
     loadingApp:false,
@@ -222,6 +226,8 @@ export const AppointmentsStore = defineStore({
     },
 
     async fetchApppointRes() {
+      
+      this.reserve  = [];
 
       try {
         const data = await ApiService.get('/appointment/reserve/get/'+this.user_id).then(response => {
@@ -251,7 +257,6 @@ this.reservefisrt = []
 
 for (var i = 0; i < this.reserve.length; i++) {
   let e = moment(this.reserve[i].ap_date_first).format("YYYY-M-DD");
-console.log(this.reserve[i]);
 var myDatestart = Date.parse(e);
 var myDateNow = Date.parse(date);
 
@@ -458,7 +463,17 @@ return x;
 
     },
     async CancelAp() {
-      console.log(this.reservefisrt);
+
+      this.searchapp.ap_number = this.reservefisrt[0].ap_number;
+   
+      try {
+        const data = await ApiService.post('/appointment/cancelapp', this.searchapp).then(reps => {
+
+        });
+        return data;
+      } catch (error) {
+        return false;
+      }
     }
 
     
