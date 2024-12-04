@@ -50,19 +50,21 @@ import Notifications from '@/components/noti/Noti.vue';
 import { useAuthStore } from '@/stores/auth'; // import the auth store we just created
 import { storeToRefs } from 'pinia';
 import { defineComponent } from 'vue';
-import { ResultStore } from '@/stores/result';
+import { NotifiStore } from '@/stores/notification';
 import { useRoute } from "vue-router";
 const auth = useAuthStore()
 const route = useRoute();
-const store = ResultStore()
+const store = NotifiStore()
 
 store.user_id = auth.user_id;
-await store.fetchDlt()
-await store.fetchResult()
+await store.fetchNew()
+await store.fetchNotication()
 
 
 </script>
-  <style>
+ <style scoped>
+  
+ 
   .modal {
     position: fixed;
     top: 0;

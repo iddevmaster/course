@@ -7,7 +7,6 @@ export const AppointmentsStore = defineStore({
   state: () => ({
     appgroup: [],
     reserve: [],
-    popupcancelapp:false,
     event:[],
     IsStep1:false,
     IsStep2:false,
