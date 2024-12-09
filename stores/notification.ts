@@ -6,6 +6,8 @@ export const NotifiStore = defineStore({
   id: 'notification',
   state: () => ({
     user_id: null,
+    data_alert_dlt:[],
+    data_alert_news:[],
   }),
   
   getters: {
@@ -19,8 +21,9 @@ export const NotifiStore = defineStore({
       try {
         const data = await ApiService.get('/user/noticationdlt?user_id='+this.user_id).then(response => {
         
+this.data_alert_dlt = response.data.dlt
+this.data_alert_news = response.data.news
 
-console.log(response);
          });
      
         return true

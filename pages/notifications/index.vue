@@ -35,6 +35,11 @@
                     <Notifications></Notifications>
                   </div>
               </div>
+              <div class="row">
+                  <div class="col-xl-12">
+                    <NotificationsNews></NotificationsNews>
+                  </div>
+              </div>
           </div>
       </div>
   </div>
@@ -47,6 +52,7 @@
 })
 
 import Notifications from '@/components/noti/Noti.vue';
+import NotificationsNews from '@/components/noti/NotiNew.vue';
 import { useAuthStore } from '@/stores/auth'; // import the auth store we just created
 import { storeToRefs } from 'pinia';
 import { defineComponent } from 'vue';
