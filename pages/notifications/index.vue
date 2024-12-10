@@ -28,12 +28,12 @@
           <div class="container">
               <div class="row">
                   <div class="col-xl-12">
-                    <Notifications></Notifications>
+                    <Notifications v-if="store.data_alert_dlt.length > 0"></Notifications>
                   </div>
               </div>
               <div class="row">
                   <div class="col-xl-12">
-                    <NotificationsNews></NotificationsNews>
+                    <NotificationsNews v-if="store.data_alert_news.length > 0"></NotificationsNews>
                   </div>
               </div>
           </div>
