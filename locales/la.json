@@ -109,6 +109,8 @@
   "page_exam_appoint_pass":"ນັດໝາຍທີ່ຜ່ານມາ",
   "page_appoint_make": "ເຮັດການນັດໝາຍ",
   "page_appoint_current": "ການນັດໝາຍເສັງໃບຂັບຂີ່ປັດຈຸບັນຂອງທ່ານ",
+  "page_appoint_current_yet": "You do not have any appointment to take driving exam yet.",
+  "page_appoint_current_add_bu": "ເພີ່ມນັດໝາຍໃໝ່",
   "page_appoint_type_code": "ປະເພດ :",
   "page_appoint_full_name": "ຊື່ເຕັມ",
   "page_appoint_passpost": "ເລກບັດປະຈຳຕົວ / ເລກ Passport",
@@ -430,6 +432,8 @@
 "my_licen_his": "ປະຫວັດໃບຂັບຂີ່ເກົ່າ",
 
 "cancel_app": "ຍົກເລີກການນັດໝາຍ",
+
+"pop_up_leaning": "You have not fulfilled requirement to have learned at least 50% of the e-learning lessons yet. please go back to learn first.",
 
 "noti_all": "ການແຈ້ງເຕືອນ",
 "noti_dlt": "ການແຈ້ງເຕືອນ ໃບຂັບຂີ່ໝົດອາຍຸ",

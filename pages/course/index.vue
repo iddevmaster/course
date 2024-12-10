@@ -51,6 +51,7 @@
   import CourseSel from '@/components/layout/CourseSel.vue';
   import HistoryCourse from '@/components/layout/HistoryCourse.vue';
 import { CoursePostStore } from '@/stores/course';
+
 import Swal from "sweetalert2";
 definePageMeta({
   middleware: "auth", // this should match the name of the file inside the middleware directory
@@ -68,6 +69,7 @@ const auth = useAuthStore();
 const router = useRouter();
 const store = CoursePostStore()
 store.user_id = auth.user_id;
+
 let profile = await auth.getProfile()
 
     store.formsearchcourse.page = 1;

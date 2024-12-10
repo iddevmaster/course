@@ -20,14 +20,14 @@
     </div>
     <div class="container py-3 py-md-4 py-lg-5 appcontent">
       <header class="header text-center">
-        <h5>Your current appointment to take driving exam:</h5>
+        <h5>{{ $t("page_appoint_current") }}</h5>
       </header>
       <article class="text-center">
         <section>
-          <p>You do not have any appointment to take driving exam yet.</p>
+          <p>{{ $t("page_appoint_current_add_bu") }}</p>
         </section>
         <section>
-          <button class="btn btn-primary" @click="goToMenu()">Add New Appointment</button>
+          <button class="btn btn-primary" @click="goToMenu()">{{ $t("page_appoint_current_add_bu") }}</button>
         </section>
       </article>
     </div>

@@ -40,7 +40,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p class="fs-5">You have not fulfilled requirement to have learned at least 50% of the e-learning lessons yet. please go back to learn first.</p>
+                    <p class="fs-5">{{ $t("pop_up_leaning") }} </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="icofont-double-left"></i> Back</button>

@@ -77,11 +77,13 @@ import { RegisterStore } from '@/stores/register'
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, sameAs, minLength, helpers } from '@vuelidate/validators';
 import { useI18n } from "vue-i18n";
+import { NotifiStore } from '@/stores/notification';
 const { locale, setLocale } = useI18n();
 
 
 const router = useRouter();
 const store = useLogin()
+const storeNot = NotifiStore()
 const registerload = RegisterStore()
 const useError = useAuthStore()
 
@@ -134,6 +136,9 @@ const login = async () => {
   if (!v$.value.$error) {
     await authenticateUser(formData); 
       if (authenticated) {
+
+        // storeNot.user_id = auth.user_id;
+
         router.push('/course');
       }
   }

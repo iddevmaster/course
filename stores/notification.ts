@@ -19,11 +19,9 @@ export const NotifiStore = defineStore({
     async fetchNew() {
 
       try {
-        const data = await ApiService.get('/user/noticationdlt?user_id='+this.user_id).then(response => {
-        
+        const data = await ApiService.get('/user/noticationdlt?user_id='+this.user_id).then(response => {  
 this.data_alert_dlt = response.data.dlt
 this.data_alert_news = response.data.news
-
          });
      
         return true

@@ -114,18 +114,29 @@
                         {{useError.mydltcardExp.length}}
                       </span>
                       <ul class="headerarea__submenu mt-3">
-                        <li class="header__right__dropdown__inner"  v-for="(item, index) in useError.mydltcardExp"
-                      :key="item.ap_id">
+                        <li class="header__right__dropdown__inner" v-if="storeNot.data_alert_dlt.length > 0"  v-for="(item, index) in storeNot.data_alert_dlt.slice(0, 1)">
                           <div class="single__header__right__dropdown">
-                            <NuxtLink to="/profile">  
-                            <div class="header__right__dropdown__content">
-                              <a > {{ $t("head_alert") }} <span class="text-danger">{{ item.dlt_code }}</span> {{ $t("head_alert_day_out") }} 
-                                <span class="text-danger">{{ item.expiry_date }}</span></a>
-                            </div>
-                          </NuxtLink>
+                            <a > 
+                              <span style="font-size: 10px;color: #0AA7FF;">{{ item.message }}</span></a>
+                          </div>
+                        </li>
+
+                        <li class="header__right__dropdown__inner"  v-if="storeNot.data_alert_news.length > 0" v-for="(item, index) in storeNot.data_alert_news.slice(0, 1)">
+                          <div class="single__header__right__dropdown">
+                            <a > 
+                              <span style="font-size: 10px;color: #0AA7FF;">{{ item.message }}</span></a>
+                          </div>
+                        </li>
+                        <li class="header__right__dropdown__inner">
+                          <div class="single__header__right__dropdown">
+                            <a  style="
+    text-align: end;
+"> 
+                              <span style="font-size: 10px;color: #0AA7FF;">ເບິ່ງທັງໝົດ</span></a>
                           </div>
                         </li>
                       </ul>
+                      
                     </li>
                     <li>
                  
@@ -349,10 +360,16 @@ import {
 } from "@vuelidate/validators";
 import { useI18n } from "vue-i18n";
 import Swal from "sweetalert2";
+import { NotifiStore } from '@/stores/notification';
 
 const router = useRouter();
 const store = useLogin();
 const useError = useAuthStore();
+const storeNot = NotifiStore()
+
+// storeNot.user_id = auth.user_id;
+// await storeNot.fetchNew()
+// await storeNot.fetchNotication()
 
 
 

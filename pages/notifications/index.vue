@@ -17,10 +17,6 @@
               </div>
               
               <div class="breadcrumb__inner">
-                <!-- <ul>
-                  <li><a href="#">{{ $t("home") }}</a></li>
-                  <li>{{ $t("result") }}</li>
-                </ul> -->
               </div>
             </div>
           </div>
@@ -58,13 +54,12 @@ import { storeToRefs } from 'pinia';
 import { defineComponent } from 'vue';
 import { NotifiStore } from '@/stores/notification';
 import { useRoute } from "vue-router";
+
 const auth = useAuthStore()
 const route = useRoute();
 const store = NotifiStore()
 
 store.user_id = auth.user_id;
-await store.fetchNew()
-await store.fetchNotication()
 
 
 </script>

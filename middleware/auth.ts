@@ -3,6 +3,7 @@ import { useAuthStore } from '~/stores/auth';
 import ApiService from '../services/api.service';
 import Cookies from 'js-cookie';
 import { useRouter } from 'vue-router';
+import { NotifiStore } from '@/stores/notification';
 
 
 
@@ -29,11 +30,18 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   //  }
 
   if (token.value) {
+    const storeNot = NotifiStore()
+    storeNot.user_id = User.user_id;
     authenticated.value = true; // update the state to authenticated
+    await storeNot.fetchNew()
+    await storeNot.fetchNotication()
     const checkveri = await ApiService.get('/user/get/'+user_id.value).catch(({ response }) => {
      router.push('/maintenance'); // Replace with your error page route
     //  return navigateTo('/maintenance');
     });
+
+    
+
 
 
 

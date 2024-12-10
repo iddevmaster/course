@@ -106,6 +106,8 @@
   "page_appoint": "Appointment",
   "page_appoint_make": "Make Appointments",
   "page_appoint_current": "Your current appointment to take driving exam",
+  "page_appoint_current_yet": "You do not have any appointment to take driving exam yet.",
+  "page_appoint_current_add_bu": "Add New Appointment",
   "page_appoint_type_code": "Type : ",
   "page_appoint_full_name": "Full name",
   "page_appoint_passpost": "Citizen ID / Passport Number",
@@ -415,6 +417,8 @@
 
 "my_licen_his": "History License",
 "cancel_app": "Cancel Appointment",
+
+"pop_up_leaning": "You have not fulfilled requirement to have learned at least 50% of the e-learning lessons yet. please go back to learn first.",
 
 "noti_all": "Notifications",
 "noti_dlt": "Notifications DLT Expired",
