@@ -132,7 +132,7 @@
                             <a  style="
     text-align: end;
 "> 
-                              <span style="font-size: 10px;color: #0AA7FF;">ເບິ່ງທັງໝົດ</span></a>
+                              <span style="font-size: 10px;color: #0AA7FF;" @click="GotoPageNo()">ເບິ່ງທັງໝົດ</span></a>
                           </div>
                         </li>
                       </ul>
@@ -426,6 +426,14 @@ const GotoPage = (item) => {
   store.isActiveBar = false;
   router.push(item);
 };
+
+const GotoPageNo = () => {
+
+  router.push('/notifications');
+};
+
+
+
 
 const { locale, setLocale } = useI18n();
 
