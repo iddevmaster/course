@@ -13,9 +13,9 @@
       >
         <div
           class="tab-content tab__content__wrapper with__sidebar__content"
-          id="myTabContent" v-if="store.data_alert_dlt.length > 0"
+          id="myTabContent" v-if="store.data_alert_news.length > 0"
         >
-          <div v-for="(item, index) in store.data_alert_dlt" :key="index"
+          <div v-for="(item, index) in store.data_alert_news" :key="index"
             class="gridarea__wraper gridarea__wraper__1 gridarea__course__list"
             data-aos="fade-up" style="
     margin-bottom: 5px;"
@@ -33,13 +33,16 @@
                 <p class="fw-bold mb-0">{{ item.message }}</p>
               </div>
               <div class="gridarea__heading">
-                <p class="fw-bold mb-0">ກະລຸນາ ຕິດຕໍ່ຫາກອງຄຸ້ມຄອງພາຫະນະ ແລະ ການຂັບຂີ່ແຂວງ ເພື່ອຕໍ່ອາຍຸໃບຂັບຂີ່</p>
+
+                <span class="fw-bold mb-0"> ກົດ  </span>
+                <span class="fw-bold mb-0">  <a :href="'https://dot-smart.mpwt.gov.la/#/blog-details/'+item.custer_id+'/'+item.message" target="_blank" rel="noopener noreferrer">link</a> </span>
+                <span class="fw-bold mb-0">  ຕໍ່ໄປນີ້ເພື່ອອ່ານລາຍລະອຽດ </span>
               </div>
              
             </div>
             <div class="gridarea__content_footer">
               <div class="gridarea__heading">
-                <p class="fw-bold mb-0">01/04/2024 08:00:01</p>
+                <p class="fw-bold mb-0">{{item.crt_date}}</p>
               </div>
             
             </div>
