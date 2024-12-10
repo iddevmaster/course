@@ -4,7 +4,7 @@
 
     <div class="row">
       <div class="gridarea__heading">
-        <h5> ການແຈ້ງເຕືອນ ໃບຂັບຂີ່ໝົດອາຍຸ</h5>
+        <h5> {{ $t("noti_dlt") }}</h5>
       </div>
    
       <div

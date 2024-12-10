@@ -13,7 +13,7 @@
           <div class="col-xl-12">
             <div class="breadcrumb__content__wraper" data-aos="fade-up">
               <div class="breadcrumb__title">
-                  <span style="font-size: 24px;font-weight: 400;"> Notifications</span>
+                  <span style="font-size: 24px;font-weight: 400;"> {{ $t("noti_all") }} </span>
               </div>
               
               <div class="breadcrumb__inner">
