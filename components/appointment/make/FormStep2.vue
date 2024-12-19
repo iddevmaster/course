@@ -176,7 +176,7 @@ if(save.status == 200){
       timer: 1500,
     });
 
- await router.push('/appointment');
+ await router.push('/appointmentlist');
 }
 if(save.status == 201){
   await Swal.fire({
