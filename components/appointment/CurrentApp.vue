@@ -108,13 +108,13 @@ const store = AppointmentsStore();
 const route = useRoute();
 
 
-const text = ref('https://example.com') // QR code content
+const text = ref('http://course.iddriver.com/ap/'+store.reservefisrt[0].ap_number) // QR code content
 const size = ref(200) // QR code size in pixels
 const errorCorrectionLevel = ref('H') // Error correction level ('L', 'M', 'Q', 'H')
 const bgColor = ref('#ffffff') // Background color
 const fgColor = ref('#000000') // Foreground color
 
-
+console.log(text);
 const CancelApp = async () => {
 store.popupcancelapp = true;
 //await store.CancelAp();
