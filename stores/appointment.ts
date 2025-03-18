@@ -200,6 +200,7 @@ export const AppointmentsStore = defineStore({
      
       try {
         const data = await ApiService.post('/master_data/group',User).then(response => {
+         
        this.group = response.data.data;
      
         });
@@ -374,7 +375,7 @@ this.reserve.sort((a, b) => new Date(b.ap_date_first) - new Date(a.ap_date_first
       try {
         const data = await ApiService.post('/course/learn/history/'+this.user_id, this.formsearchcoursestory).then(response => {
 
-
+          console.log(response.data.data);
 this.history = response.data.data
          });
          return true;
@@ -386,9 +387,10 @@ this.history = response.data.data
 
     async checkleaning() {
       this.formselectapp.user_id = this.user_id
-     
+      
    
       const indexToUpdate = this.history.find(x => x.dlt_code == this.formselectapp.dlt_code)
+ 
      this.hit = [];
 this.leaning = false;  ///ไม่ผ่าน
       for (let i = 0; i < this.history.length; i++) {

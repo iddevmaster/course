@@ -42,7 +42,7 @@
             {{ $t("page_appoint_type_label_select_dlt") }}
           </option>
           <option v-for="(item, index) in store.group" :value="item.group_id">
-           {{ item.name }} - {{ item.province_name }}
+           {{ item }} - {{ item.province_name }}
 
           </option>
                     </select>

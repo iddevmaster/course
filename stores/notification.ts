@@ -8,6 +8,9 @@ export const NotifiStore = defineStore({
     user_id: null,
     data_alert_dlt:[],
     data_alert_news:[],
+    ap_number:null,
+    data_app:'',
+    dlt: []
   }),
   
   getters: {
@@ -32,7 +35,36 @@ this.data_alert_news = response.data.news
     },
     async fetchNotication() {
 
-    }
+    },
+
+    async fetchAppointdata() {
+      try {
+        const data = await ApiService.get('/appointment/reserve/data/'+this.ap_number).then(response => {  
+if(response.data){
+  this.data_app = response.data[0]
+}
+
+console.log(this.data_app);
+         });
+     
+        return true
+        } catch (error) {
+        return false;
+        } 
+
+    },
+
+        async fetchDltType() {
+          try {
+            const data = await ApiService.get('/master_data/drivinglicense_type').then(response => {
+            this.dlt = response.data;
+            console.log(this.dlt)
+            });
+            return true
+          } catch (error) {
+            return false;
+          }
+        },
 
   },
 
